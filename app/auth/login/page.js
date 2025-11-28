@@ -1,6 +1,8 @@
 import { TextField } from "@mui/material"
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { signIn } from "@/auth";
+
 
 export default function Login(){
     return(
@@ -25,7 +27,11 @@ export default function Login(){
                 </form>
                 <p className="text-center text-gray-700">or sign up with</p>
                 <div className="flex justify-center gap-4">
-                <form className="justify-item-center">
+                <form action={async ()=>{
+                          "use server"
+                    await signIn()
+                }} 
+                className="justify-item-center">
                     <button type="submit" className="w-10 h-10 border rounded-md shadow-lg border-gray-300 cursor-pointer">
                         <FcGoogle className="text-4xl"/>
                     </button>
