@@ -29,7 +29,7 @@ export default function Login(){
                 <div className="flex justify-center gap-4">
                 <form action={async ()=>{
                           "use server"
-                    await signIn()
+                         await signIn()
                 }} 
                 className="justify-item-center">
                     <button type="submit" className="w-10 h-10 border rounded-md shadow-lg border-gray-300 cursor-pointer">

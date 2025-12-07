@@ -12,9 +12,11 @@ export function Navbar () {
             <div className="h-[50px] flex justify-between items-center px-5">
                 <h1 className="text-2xl font-bold text-blue-500">Dexter</h1>
                 <ul className="hidden md:text-sm font-semibold md:flex gap-10 cursor-pointer">
-                    <li>Home</li>
-                    <li>Contact-us</li>
-                    <li>About-us</li>
+                    <Link href="/"><li>Home</li></Link>
+                    <Link href="/"><li>Contact-Us</li></Link>
+                    <Link href="/"><li>About-Us</li></Link>
+                    <Link href="/dashboard/add-guest"><li>Bookings</li></Link>
+                    <li>Guest-list</li>
                 </ul>
                 <Link href="/auth/login">
                 <div className="hidden md:block">
