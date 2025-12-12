@@ -1,10 +1,16 @@
 import { TextField } from "@mui/material"
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { signIn } from "@/auth";
+import { auth, signIn } from "@/auth";
+import { redirect } from "next/navigation";
 
 
-export default function Login(){
+export default async function Login(){
+    const session = await auth()
+    console.log(session)
+    if (session?.user){
+        redirect("/dashboard/add-guest")
+    }
     return(
         <main className="min-h-screen flex justify-center px-2 md:px-12 md:py-10 lg:px-16 lg:py-12">
             <div className="w-full md:w-[350px] max-h-[400px] flex flex-col gap-8 rounded md:shadow-md md:px-3 md:py-4">
@@ -29,7 +35,7 @@ export default function Login(){
                 <div className="flex justify-center gap-4">
                 <form action={async ()=>{
                           "use server"
-                         await signIn()
+                         await signIn("google")
                 }} 
                 className="justify-item-center">
                     <button type="submit" className="w-10 h-10 border rounded-md shadow-lg border-gray-300 cursor-pointer">
