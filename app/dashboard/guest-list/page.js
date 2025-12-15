@@ -3,8 +3,10 @@ import { db } from "@/config/firebase.config";
 import { CircularProgress, Paper, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LuView } from "react-icons/lu";
+
 
 
 export default function GuestList () {
@@ -12,6 +14,7 @@ export default function GuestList () {
     console.log(session);
     const [guests,setGuests] = useState([]); 
     const [loading,setLoading] = useState(true);
+    const router = useRouter();
 
     useEffect(()=>{
         const fetchGuest =async () =>{
@@ -65,7 +68,7 @@ export default function GuestList () {
                     </TableHead>
                     <TableBody>
                         {guests.map((guest)=>
-                        <TableRow key={guest.id} >
+                        <TableRow onClick={()=>router.push(`/dashboard/guest-list/${guest.id}`)} key={guest.id} >
                              <TableCell>{guest.data.fullname} </TableCell>
                              <TableCell>{guest.data.phoneNumber}</TableCell>
                              <TableCell>{guest.data.roomType}</TableCell>
